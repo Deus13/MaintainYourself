@@ -1,0 +1,25 @@
+﻿{
+	"name": "Maintain-youself",
+	"description": "Makes condition recovery much harder.",
+	"url": "",
+	"releases": [
+		{
+			"version": "1.0.0",
+			"url": "",
+			"changes": "updated to work with TLD V1.56",
+			"dependencies": [
+				{
+					"name": "ModSettings",
+					"version": "^v1.4"
+				}
+			],
+			"assets": [
+				{
+					"url": ""
+				}
+			]
+		}, {
+			"version": "1.0.0"
+		}
+	]
+}
