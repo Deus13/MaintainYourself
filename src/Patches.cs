@@ -68,39 +68,7 @@ namespace Maintainyouself
 
         }
     }
-    [HarmonyPatch(typeof(Condition), "Update")]
-    internal static class Condition_Update
-    {
-        private static void Prefix(Condition __instance)
-        {
-            Implementation.Log("?");
-            if(GameManager.GetWillpowerComponent()==null)
-            {
-                Implementation.Log("null");
-            }
-            GameManager.GetWillpowerComponent().Update();
-            Implementation.Log(GameManager.GetWillpowerComponent().m_TimeRemainingSeconds.ToString());
-        }
-    }
-
-    [HarmonyPatch(typeof(Willpower), "Update")]
-    internal static class Willpower_Update
-    {
-        private static void Postfix(Willpower __instance)
-        {
-
-            Implementation.Log(__instance.m_TimeRemainingSeconds.ToString());
-        }
-    }
-    [HarmonyPatch(typeof(Willpower), "Start")]
-    internal static class Willpower_Start
-    {
-        private static void Postfix(Willpower __instance)
-        {
-
-            __instance.m_TimeRemainingSeconds = 1000;
-        }
-    }
+    
 
 
 }
