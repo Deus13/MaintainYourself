@@ -2,12 +2,12 @@
 using System;
 using System.IO;
 using System.Reflection;
-using JsonModSettings;
+
 using ModSettings;
 
 namespace Maintainyouself
 {
-    internal class MaintainyouselfSettings : JsonModSettingsBase<MaintainyouselfSettings>
+    internal class MaintainyouselfSettings : JsonModSettings
     {
 
         [Section("Frezzing:")]
@@ -219,9 +219,16 @@ namespace Maintainyouself
             SetFieldVisible(nameof(ConditionMaxLvl), ConditionOn);
         }
 
-        public static void OnLoad()
+
+        internal static class Settings
         {
-            Instance = JsonModSettingsLoader.Load<MaintainyouselfSettings>();
+            public static MaintainyouselfSettings options;
+            public static void OnLoad()
+            {
+                options = new MaintainyouselfSettings();
+                options.RefreshGUI();
+                options.AddToModSettings("Maintainyouself Settings");
+            }
         }
     }
 }
