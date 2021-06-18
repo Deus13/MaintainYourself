@@ -1,16 +1,11 @@
-﻿
-using System;
-using System.IO;
-using System.Reflection;
-
+﻿using System.Reflection;
 using ModSettings;
 
-namespace Maintainyouself
+namespace MaintainYourself
 {
-    internal class MaintainyouselfSettings : JsonModSettings
+    internal class MaintainYourselfSettings : JsonModSettings
     {
-
-        [Section("Frezzing:")]
+        [Section("Freezing:")]
         [Name("Breackeven Temperture")]
         [Description("Temperture where conditionloss form frezzing is the same as the unmoded conditionloss.")]
         [Slider(0, -30)]
@@ -160,28 +155,28 @@ namespace Maintainyouself
             
             if (field.Name == nameof(HungerOn))
             {
-                hideHunger();
+                HideHunger();
             }
-            if (field.Name == nameof(ThirstOn))
+            else if (field.Name == nameof(ThirstOn))
             {
-                hideThirst();
+                HideThirst();
             }
-            if (field.Name == nameof(FreezingOn))
+            else if (field.Name == nameof(FreezingOn))
             {
-                hideFreezing();
+                HideFreezing();
             }
-            if (field.Name == nameof(FatigueOn))
+            else if (field.Name == nameof(FatigueOn))
             {
-                hideFatigue();
+                HideFatigue();
             }
-            if (field.Name == nameof(ConditionOn))
+            else if (field.Name == nameof(ConditionOn))
             {
-                hideCondition();
+                HideCondition();
             }
             RefreshGUI();
         }
 
-        private void hideHunger()
+        private void HideHunger()
         {
             SetFieldVisible(nameof(HungerMin), HungerOn);
             SetFieldVisible(nameof(HungerMax), HungerOn);
@@ -189,7 +184,7 @@ namespace Maintainyouself
             SetFieldVisible(nameof(HungerMaxLvl), HungerOn);           
         }
 
-        private void hideThirst()
+        private void HideThirst()
         {
             SetFieldVisible(nameof(ThirstMin), ThirstOn);
             SetFieldVisible(nameof(ThirstMax), ThirstOn);
@@ -197,38 +192,36 @@ namespace Maintainyouself
             SetFieldVisible(nameof(ThirstMaxLvl), ThirstOn);
         }
 
-        private void hideFreezing()
+        private void HideFreezing()
         {
             SetFieldVisible(nameof(FreezingMin), FreezingOn);
             SetFieldVisible(nameof(FreezingMax), FreezingOn);
             SetFieldVisible(nameof(FreezingMinLvl), FreezingOn);
             SetFieldVisible(nameof(FreezingMaxLvl), FreezingOn);
         }
-        private void hideFatigue()
+        private void HideFatigue()
         {
             SetFieldVisible(nameof(FatigueMin), FatigueOn);
             SetFieldVisible(nameof(FatigueMax), FatigueOn);
             SetFieldVisible(nameof(FatigueMinLvl), FatigueOn);
             SetFieldVisible(nameof(FatigueMaxLvl), FatigueOn);
         }
-        private void hideCondition()
+        private void HideCondition()
         {
             SetFieldVisible(nameof(ConditionMin), ConditionOn);
             SetFieldVisible(nameof(ConditionMax), ConditionOn);
             SetFieldVisible(nameof(ConditionMinLvl), ConditionOn);
             SetFieldVisible(nameof(ConditionMaxLvl), ConditionOn);
         }
+    }
 
-
-        internal static class Settings
+    internal static class Settings
+    {
+        public static MaintainYourselfSettings options = new MaintainYourselfSettings();
+        public static void OnLoad()
         {
-            public static MaintainyouselfSettings options;
-            public static void OnLoad()
-            {
-                options = new MaintainyouselfSettings();
-                options.RefreshGUI();
-                options.AddToModSettings("Maintainyouself Settings");
-            }
+            options.RefreshGUI();
+            options.AddToModSettings("Maintain Yourself");
         }
     }
 }
