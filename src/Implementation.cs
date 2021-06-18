@@ -1,24 +1,23 @@
-﻿using System;
+﻿using MelonLoader;
+using System;
 using UnityEngine;
 
 
-namespace Maintainyouself
+namespace MaintainYourself
 {
-    public class Implementation
+    public class Implementation : MelonMod
     {
-        private const string NAME = "Maintain-youself";
-        public static double HPnotround;
-        public static void OnLoad()
+        public static double HPnotround = 0f;
+        public override void OnApplicationStart()
         {
-            Log("Version " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version);
-
-
-            HPnotround = 0f;
+            Debug.Log($"[{Info.Name}] version {Info.Version} loaded!");
+            Settings.instance.RefreshGUI();
+            Settings.instance.AddToModSettings("Maintain Yourself");
         }
 
         public static float NewMethod(float hp, DamageSource cause)
         {
-            var setting = MaintainyouselfSettings.Settings.options;
+            var setting = Settings.instance;
             if (cause == DamageSource.Freezing)
             {
 
@@ -77,8 +76,6 @@ namespace Maintainyouself
 
             return hp;
         }
-
-
 
         internal static void Log(string message)
         {
