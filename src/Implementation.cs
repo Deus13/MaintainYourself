@@ -20,9 +20,7 @@ namespace MaintainYourself
             var setting = Settings.instance;
             if (cause == DamageSource.Freezing)
             {
-
-                hp *= Math.Abs(GameManager.GetFreezingComponent().CalculateBodyTemperature() / setting.BreackevenTemperture);
-
+                hp *= Math.Abs(GameManager.GetFreezingComponent().CalculateBodyTemperature() / setting.BreakEvenTemperature);
             }
             if (hp > 0)
             {
