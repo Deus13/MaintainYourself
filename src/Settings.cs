@@ -3,8 +3,10 @@ using ModSettings;
 
 namespace MaintainYourself
 {
-    internal class MaintainYourselfSettings : JsonModSettings
+    internal class Settings : JsonModSettings
     {
+        public static Settings instance = new Settings();
+
         [Section("Freezing:")]
         [Name("Breackeven Temperture")]
         [Description("Temperture where conditionloss form frezzing is the same as the unmoded conditionloss.")]
@@ -212,16 +214,6 @@ namespace MaintainYourself
             SetFieldVisible(nameof(ConditionMax), ConditionOn);
             SetFieldVisible(nameof(ConditionMinLvl), ConditionOn);
             SetFieldVisible(nameof(ConditionMaxLvl), ConditionOn);
-        }
-    }
-
-    internal static class Settings
-    {
-        public static MaintainYourselfSettings options = new MaintainYourselfSettings();
-        public static void OnLoad()
-        {
-            options.RefreshGUI();
-            options.AddToModSettings("Maintain Yourself");
         }
     }
 }

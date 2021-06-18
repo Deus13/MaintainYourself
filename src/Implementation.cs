@@ -11,12 +11,13 @@ namespace MaintainYourself
         public override void OnApplicationStart()
         {
             Debug.Log($"[{Info.Name}] version {Info.Version} loaded!");
-            Settings.OnLoad();
+            Settings.instance.RefreshGUI();
+            Settings.instance.AddToModSettings("Maintain Yourself");
         }
 
         public static float NewMethod(float hp, DamageSource cause)
         {
-            var setting = Settings.options;
+            var setting = Settings.instance;
             if (cause == DamageSource.Freezing)
             {
 
